@@ -22,7 +22,8 @@ class Synthesizer(object):
 
         params = {'api_id':int(self.api_id),'api_token': self.api_token, 'lang':self.lang}
         try:
-            files={'file':open(opts.text, "rb")}
+            with open(opts.text, "rb") as opts_text:
+                files = {'file': opts_text}
         except IOError as ex:
             logging.error("Problem opening text file {}".format(opts.text))
             raise
